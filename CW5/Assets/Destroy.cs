@@ -2,19 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class Destroy : MonoBehaviour
 {
+
     // Start is called before the first frame update
 
-    public int score = 0;
+    public long score = 0;
     public TextMeshProUGUI scoreText;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Destroy(gameObject);
+        Int64.TryParse(scoreText.text, out score);
         score++;
-        scoreText.text = "Score: " + score.ToString();
+        scoreText.text = score.ToString();
     }
 
     void Start()
